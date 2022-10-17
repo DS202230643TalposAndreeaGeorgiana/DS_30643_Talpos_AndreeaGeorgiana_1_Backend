@@ -1,8 +1,10 @@
 package org.example.model;
 
 import lombok.Data;
+import org.example.util.Role;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -10,15 +12,20 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="user_id")
+    private Long userId;
 
-    @Column
+    @Column(nullable = false)
     private String username;
 
-    @Column
+    @Column(nullable = false)
     private String password;
 
-    @Column
-    private String role;
+    @Column(nullable = false)
+    private Role role;
+
+    @OneToMany(cascade = CascadeType.MERGE, fetch= FetchType.EAGER, orphanRemoval = true)
+    @JoinColumn(name="user_id", referencedColumnName = "user_id")
+    private List<Device> associatedDevices;
 }

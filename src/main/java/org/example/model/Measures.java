@@ -2,10 +2,7 @@ package org.example.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Data
@@ -15,8 +12,8 @@ public class Measures {
 
     @Id
     @GeneratedValue
-    private Long id;
+    @Column(name="measure_id")
+    private Long measureId;
     private Float energyConsumption;
     private Timestamp timestamp;
-
 }

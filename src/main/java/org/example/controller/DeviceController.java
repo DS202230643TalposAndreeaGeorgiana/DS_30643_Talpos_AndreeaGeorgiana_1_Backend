@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.model.Device;
-import org.example.service.DeviceService;
+import org.example.service.serviceImpl.DeviceServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,30 +12,30 @@ import java.util.List;
 public class DeviceController {
 
     @Autowired
-    private DeviceService deviceService;
+    private DeviceServiceImpl deviceServiceImpl;
 
     @PostMapping
     public Long createDevice(@RequestBody Device device) {
-        deviceService.createDevice(device);
-        return device.getId();
+        deviceServiceImpl.createDevice(device);
+        return device.getDeviceId();
     }
     @GetMapping
     public List<Device> getAllDevices() {
-        return deviceService.getAllDevices();
+        return deviceServiceImpl.getAllDevices();
     }
 
     @GetMapping("/{deviceId}")
     public Device getDeviceById(@PathVariable("deviceId") Long deviceId) {
-        return deviceService.getDeviceById(deviceId);
+        return deviceServiceImpl.getDeviceById(deviceId);
     }
 
     @PutMapping("/{deviceId}")
     public Device updateDevice(@RequestBody Device device, @PathVariable("deviceId") Long deviceId) {
-        return deviceService.updateDevice(device, deviceId);
+        return deviceServiceImpl.updateDevice(device, deviceId);
     }
 
     @DeleteMapping("/{deviceId}")
     public void deleteDevice(@PathVariable("deviceId") Long deviceId) {
-        deviceService.deleteDeviceById(deviceId);
+        deviceServiceImpl.deleteDeviceById(deviceId);
     }
 }
