@@ -1,5 +1,6 @@
 package org.example.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -7,10 +8,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(schema = "energy_platform")
+@Table(name = "device")
 public class Device {
 
     @Id
@@ -21,8 +22,21 @@ public class Device {
     private String address;
     private Float maximumHourlyConsumption;
 
-    @OneToMany(cascade = CascadeType.MERGE, fetch= FetchType.EAGER, orphanRemoval = true)
-    @JoinColumn(name="device_id", referencedColumnName = "device_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "device")
     private List<Measures> measures;
+
+    @JsonIgnore
+    @ManyToOne( fetch= FetchType.LAZY)
+    private User user;
+
+    public void addMeasure(Measures measures) {
+        this.measures.add(measures);
+        measures.setDevice(this);
+    }
+
+    public void removeMeasure(Measures measures) {
+        this.measures.remove(measures);
+        measures.setDevice(null);
+    }
 
 }

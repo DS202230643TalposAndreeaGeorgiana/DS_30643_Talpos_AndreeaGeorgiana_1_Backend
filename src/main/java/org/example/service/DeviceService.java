@@ -1,13 +1,16 @@
 package org.example.service;
 
-import org.example.model.Device;
+import org.example.dto.DeviceDTO;
 
 import java.util.List;
 
 public interface DeviceService {
-    List<Device> getAllDevices();
-    Device getDeviceById(Long id);
-    Device updateDevice(Device device, Long id);
-    void createDevice(Device device);
-    void deleteDeviceById(Long id);
+    List<DeviceDTO> getAllDevices();
+    List<DeviceDTO> getAvailableDevices();
+    DeviceDTO getDeviceById(Long id);
+    DeviceDTO updateDevice(DeviceDTO device, Long id);
+    DeviceDTO createDevice(DeviceDTO device);
+    Long deleteDeviceById(Long id);
+    List<DeviceDTO> getDevicesByDescription(String description);
+
 }

@@ -1,13 +1,18 @@
 package org.example.model;
 
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(schema = "energy_platform")
+@Table(name = "measures")
 public class Measures {
 
     @Id
@@ -16,4 +21,8 @@ public class Measures {
     private Long measureId;
     private Float energyConsumption;
     private Timestamp timestamp;
+
+    @JsonIgnore
+    @ManyToOne( fetch= FetchType.LAZY)
+    private Device device;
 }

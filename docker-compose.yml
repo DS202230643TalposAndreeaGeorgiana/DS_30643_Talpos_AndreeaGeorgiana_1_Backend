@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: andreea
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5434:5432"
+    networks:
+      - default
+
+  backend:
+    image: backend
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      spring.datasource.url: jdbc:postgresql://postgres:5432/postgres
+
+  frontend:
+    image: frontend
+    restart: on-failure
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+
+
+#  tomcat-db-api:
+#    image: energy_platform_image
+#    ports:
+#      - "8080:8080"
