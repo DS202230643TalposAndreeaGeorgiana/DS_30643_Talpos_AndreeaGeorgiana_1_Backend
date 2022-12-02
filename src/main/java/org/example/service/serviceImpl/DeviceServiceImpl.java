@@ -21,7 +21,6 @@ public class DeviceServiceImpl implements DeviceService {
     @Autowired
     private DeviceRepository deviceRepository;
 
-
     public List<DeviceDTO> getAllDevices() {
         List<Device> deviceList = deviceRepository.findAll();
         return deviceList.stream()
@@ -39,7 +38,7 @@ public class DeviceServiceImpl implements DeviceService {
     public List<DeviceDTO> getAvailableDevices() {
         List<Device> deviceList = deviceRepository.findAll();
         return deviceList.stream()
-                .filter(x -> x.getUser()==null)
+                .filter(x -> x.getUser() == null)
                 .map(x -> modelMapper.map(x, DeviceDTO.class))
                 .collect(Collectors.toList());
     }
@@ -47,7 +46,7 @@ public class DeviceServiceImpl implements DeviceService {
     public DeviceDTO getDeviceById(Long id) {
         Optional<Device> device = deviceRepository.findById(id);
         if (device.isEmpty()) {
-            throw new ResourceNotFoundException(Device.class.getSimpleName() + " with ID " +id);
+            throw new ResourceNotFoundException(Device.class.getSimpleName() + " with ID " + id);
         }
         return modelMapper.map(device, DeviceDTO.class);
     }
@@ -56,7 +55,7 @@ public class DeviceServiceImpl implements DeviceService {
         Optional<Device> deviceToUpdate = deviceRepository.findById(id);
 
         if (deviceToUpdate.isEmpty()) {
-            throw new ResourceNotFoundException(Device.class.getSimpleName() + " with ID " +id);
+            throw new ResourceNotFoundException(Device.class.getSimpleName() + " with ID " + id);
         }
         deviceToUpdate.get().setDescription(device.getDescription());
         deviceToUpdate.get().setAddress(device.getAddress());
@@ -72,7 +71,7 @@ public class DeviceServiceImpl implements DeviceService {
     public Long deleteDeviceById(Long id) {
         Optional<Device> deviceToDelete = deviceRepository.findById(id);
         if (deviceToDelete.isEmpty()) {
-            throw new ResourceNotFoundException(Device.class.getSimpleName() + " with ID " +id);
+            throw new ResourceNotFoundException(Device.class.getSimpleName() + " with ID " + id);
         }
         deviceRepository.deleteById(id);
         return id;

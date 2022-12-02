@@ -22,7 +22,7 @@ public class Device {
     private String address;
     private Float maximumHourlyConsumption;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "device")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "device", fetch = FetchType.EAGER)
     private List<Measures> measures;
 
     @JsonIgnore

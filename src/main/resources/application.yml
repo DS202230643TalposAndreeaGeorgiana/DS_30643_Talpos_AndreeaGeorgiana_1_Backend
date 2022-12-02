@@ -1,0 +1,11 @@
+server:
+  port: 8080
+spring:
+  rabbitmq:
+    host: localhost
+    password: 0aOH0m-gJOdRSCoRvmt-z7drGzath6zv
+    port: 5672
+    username: wzvijfiz
+    exchange: measure.exchange
+    queue: measure.queue
+    routingkey: measure.routingkey

@@ -31,7 +31,6 @@ services:
     depends_on:
       - backend
 
-
 #  tomcat-db-api:
 #    image: energy_platform_image
 #    ports:
