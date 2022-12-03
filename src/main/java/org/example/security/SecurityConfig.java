@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -52,6 +53,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and();
 
         http.cors().and().csrf().disable().authorizeRequests()
+                .antMatchers("/ws/**").permitAll()
+                .antMatchers("/ws-sockets/**").permitAll()
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/admin/**/**").permitAll()
                 .antMatchers("/users/**").permitAll()
@@ -65,6 +68,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 jwtTokenFilter,
                 UsernamePasswordAuthenticationFilter.class
         );
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers("/ws/**")
+                .antMatchers("/ws-sockets/**");
     }
 
     @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
