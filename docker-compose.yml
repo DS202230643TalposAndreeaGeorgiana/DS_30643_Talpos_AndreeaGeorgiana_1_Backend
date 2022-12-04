@@ -2,7 +2,7 @@ version: '3'
 
 services:
   postgres:
-    image: containerregistrytalposandreeageorgiana30643/postgres
+    image: containerregistrytalposandreeageorgiana30643.azurecr.io/postgres
     restart: always
     environment:
       POSTGRES_PASSWORD: andreea
@@ -14,7 +14,7 @@ services:
       - default
 
   backend:
-    image: containerregistrytalposandreeageorgiana30643/backend
+    image: containerregistrytalposandreeageorgiana30643.azurecr.io/backend
     restart: on-failure
     ports:
       - "8080:8080"
@@ -24,7 +24,7 @@ services:
 #      spring.datasource.url: jdbc:postgresql://postgres:5432/postgres
 
   frontend:
-    image: containerregistrytalposandreeageorgiana30643/frontend
+    image: containerregistrytalposandreeageorgiana30643.azurecr.io/frontend
     restart: on-failure
     ports:
       - "4200:4200"
