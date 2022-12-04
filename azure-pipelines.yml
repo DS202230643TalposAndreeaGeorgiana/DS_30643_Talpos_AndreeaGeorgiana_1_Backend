@@ -12,7 +12,7 @@ variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: 'a3846326-2d16-465d-8ea6-f0bdd5a9a22b'
   imageRepository: 'ds202230643talposandreeageorgiana_ds_30643_talpos_andreeageorgiana_1_backend'
-  containerRegistry: 'containerregistrytalposandreeageorgiana30643.azurecr.io'
+  containerRegistry: 'containerregistrytalposandreeageorgiana30643'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
 
