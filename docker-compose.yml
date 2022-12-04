@@ -20,8 +20,8 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
-    environment:
-      spring.datasource.url: jdbc:postgresql://postgres:5432/postgres
+#    environment:
+#      spring.datasource.url: jdbc:postgresql://postgres:5432/postgres
 
   frontend:
     image: frontend
