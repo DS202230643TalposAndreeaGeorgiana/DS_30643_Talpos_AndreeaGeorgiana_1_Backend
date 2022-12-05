@@ -21,7 +21,7 @@ services:
     depends_on:
       - postgres
     environment:
-      spring.datasource.url: jdbc:postgresql://postgres:5432/postgres
+      spring.datasource.url: "jdbc:postgresql://postgres:5432/postgres"
 
   frontend:
     image: containerregistrytalposandreeageorgiana30643.azurecr.io/frontend
