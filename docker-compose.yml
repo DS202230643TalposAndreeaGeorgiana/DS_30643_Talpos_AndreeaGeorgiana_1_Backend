@@ -25,7 +25,7 @@ services:
     image: containerregistrytalposandreeageorgiana30643.azurecr.io/frontend
     restart: on-failure
     ports:
-      - "4200:4200"
+      - "80:80"
     depends_on:
       - backend
 
