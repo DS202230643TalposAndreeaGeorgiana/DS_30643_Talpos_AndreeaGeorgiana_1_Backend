@@ -21,13 +21,13 @@ services:
     depends_on:
       - postgres
 
-  frontend:
-    image: containerregistrytalposandreeageorgiana30643.azurecr.io/frontend
-    restart: on-failure
-    ports:
-      - "80:80"
-    depends_on:
-      - backend
+#  frontend:
+#    image: containerregistrytalposandreeageorgiana30643.azurecr.io/frontend
+#    restart: on-failure
+#    ports:
+#      - "80:80"
+#    depends_on:
+#      - backend
 
 #  tomcat-db-api:
 #    image: energy_platform_image
