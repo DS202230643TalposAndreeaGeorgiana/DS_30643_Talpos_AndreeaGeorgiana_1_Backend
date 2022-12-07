@@ -40,7 +40,10 @@ public class LoginController {
         if (currentUser.isPresent() && new BCryptPasswordEncoder().matches(user.getPassword(), currentUser.get().getPassword())) {
             return new ResponseEntity<>(jwtUtil.generateToken(user.getUsername()), HttpStatus.ACCEPTED);
         } else if (currentUser.isEmpty() && "admin".equals(user.getUsername())) {
+            user.setRole(Role.ROLE_ADMIN);
+            user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
             userService.createUser(user);
+            return new ResponseEntity<>(jwtUtil.generateToken(user.getUsername()), HttpStatus.ACCEPTED);
         }
         throw new Exception("invalid username/password");
     }
