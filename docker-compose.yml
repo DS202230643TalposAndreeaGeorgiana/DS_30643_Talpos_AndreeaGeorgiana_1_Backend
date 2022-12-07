@@ -1,25 +1,25 @@
 version: '3'
 
 services:
-  postgres:
-    image: containerregistrytalposandreeageorgiana30643.azurecr.io/postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: andreea
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-    ports:
-      - "5432:5432"
-    networks:
-      - default
+#  postgres:
+#    image: containerregistrytalposandreeageorgiana30643.azurecr.io/postgres
+#    restart: always
+#    environment:
+#      POSTGRES_PASSWORD: andreea
+#      POSTGRES_USER: postgres
+#      POSTGRES_DB: postgres
+#    ports:
+#      - "5432:5432"
+#    networks:
+#      - default
 
   backend:
     image: containerregistrytalposandreeageorgiana30643.azurecr.io/backend
     restart: on-failure
     ports:
       - "8080:8080"
-    depends_on:
-      - postgres
+#    depends_on:
+#      - postgres
 
 #  frontend:
 #    image: containerregistrytalposandreeageorgiana30643.azurecr.io/frontend
