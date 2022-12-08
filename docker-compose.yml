@@ -1,33 +1,36 @@
 version: '3'
 
 services:
-#  postgres:
-#    image: containerregistrytalposandreeageorgiana30643.azurecr.io/postgres
-#    restart: always
-#    environment:
-#      POSTGRES_PASSWORD: andreea
-#      POSTGRES_USER: postgres
-#      POSTGRES_DB: postgres
-#    ports:
-#      - "5432:5432"
-#    networks:
-#      - default
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: andreea
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5434:5432"
+    networks:
+      - default
 
   backend:
-    image: containerregistrytalposandreeageorgiana30643.azurecr.io/backend
+    image: backend
     restart: on-failure
     ports:
       - "8080:8080"
-#    depends_on:
-#      - postgres
+    depends_on:
+      - postgres
+    environment:
+      spring.datasource.url: jdbc:postgresql://postgres:5432/postgres
 
-#  frontend:
-#    image: containerregistrytalposandreeageorgiana30643.azurecr.io/frontend
-#    restart: on-failure
-#    ports:
-#      - "80:80"
-#    depends_on:
-#      - backend
+  frontend:
+    image: frontend
+    restart: on-failure
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+
 
 #  tomcat-db-api:
 #    image: energy_platform_image
