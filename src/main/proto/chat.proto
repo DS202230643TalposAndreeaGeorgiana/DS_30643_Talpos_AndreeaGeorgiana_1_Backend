@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option java_package = "grpc.chat";
+option java_multiple_files = true;
+option java_outer_classname = "ChatProto";
+option cc_generic_services = true;
+option java_generic_services = true;
+
+message ChatMessage {
+  string message = 1;
+  string user = 2;
+  string to = 3;
+}
+
+message ReceiveMessagesRequests {
+  int32 numberOfMessages = 1;
+  int32 maxAgeSeconds = 2;
+}
+
+message Empty {}
+
+service ChatService {
+  rpc ReceiveMessages (ReceiveMessagesRequests) returns (stream ChatMessage) {}
+  rpc SendMessage (ChatMessage) returns (Empty) {}
+  rpc Ping (ChatMessage) returns (ChatMessage) {}
+}
