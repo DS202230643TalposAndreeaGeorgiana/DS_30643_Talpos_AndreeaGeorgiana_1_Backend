@@ -1,5 +1,6 @@
 package org.example;
 
+import org.lognet.springboot.grpc.autoconfigure.OnGrpcServerEnabled;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @SpringBootApplication
+@OnGrpcServerEnabled
 public class Main {
     @Bean
     public ModelMapper modelMapper() {
