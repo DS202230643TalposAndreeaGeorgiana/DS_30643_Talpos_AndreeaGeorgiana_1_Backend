@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import grpc.chat.ChatMessage;
 import org.example.dto.DeviceDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,4 +42,13 @@ public class WebSocketController {
     public DeviceDTO broadcastMessage(@Payload DeviceDTO deviceDTO) {
         return deviceDTO;
     }
+
+    @MessageMapping("/seen")
+    public String seen(String message) {
+        template.convertAndSend("/topic/seen", message);
+        System.out.println("message "+ message);
+
+        return message;
+    }
+
 }

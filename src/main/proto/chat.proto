@@ -10,6 +10,7 @@ message ChatMessage {
   string message = 1;
   string user = 2;
   string to = 3;
+  bool read = 4;
 }
 
 message ReceiveMessagesRequests {
